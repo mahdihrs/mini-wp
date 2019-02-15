@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kumpakata</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Hanalei+Fill" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="home" v-if="!isLogin">
+        <div v-if="homePage">
+            <div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-home">
+                    <a class="navbar-brand cont-nav" href="#">Kumpakata</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto" id="navbarNav">
+                            <li class="nav-item active">
+                                <a href="#" class="nav-link cont-nav" v-on:click="homePage = false; mySitesButton = true; searchBar = true">My Sites</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="#" class="nav-link cont-nav">Features</a>
+                            </li>
+                        </ul>
+                        <button type="button" class="btn btn-primary btn-sm nav-link" v-on:click="loginPageButton = true; homePage = false">Login</button>
+                        <button type="button" class="btn btn-primary btn-sm nav-link">Sign Up</button>
+                    </div>
+                </nav>
+            </div>
+
+            <div id="bodyContent">
+                    <div class="jumbotron">
+                        <h1 class="display-4">Hello, worldpress!</h1>
+                        <p class="lead">“You don’t start out writing good stuff. You start out writing crap and thinking it’s good stuff, and then gradually you get better at it. That’s why I say one of the most valuable traits is persistence.” </p>
+                        <p>― Octavia E. Butler</p>
+                        <hr class="my-4">
+                        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Getting Started</a>
+                    </div>
+                    <div class="content">
+                        <div id="content1" class="vh-100">
+                            <div class="mx-0">
+                            </div>
+                        </div>
+                        <div id="content2" class="">
+                            <div id="content2Text" class="mx-0">
+                                <img src="https://images.pexels.com/photos/625219/pexels-photo-625219.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940.jpg" class="vw-100" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="py-5">
+                        <div id="footer-content" class="d-flex container" width="100%">
+                            <div>
+                                <h5>Other Solutions</h5>
+                                <p>Jetpack plugin</p>
+                                <p>WooCommerce</p>
+                                <p>Pressable</p>
+                                <p>VIP</p>
+                                <p>Developers</p>
+                            </div>
+                            <div class="ml-5">
+                                <h5>Explore</h5>
+                                <p>News</p>
+                                <p>Discover</p>
+                                <p>Go: Growth Content</p>
+                                <p>Desktop Apps</p>
+                                <p>Mobile Apps</p>
+                            </div>
+                            <div class="ml-5">
+                                <h5>Community</h5>
+                                <p>Support</p>
+                                <p>Forums</p>
+                                <p>WordCamps</p>
+                                <p>WordPress.org</p>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="container">
+                            <p><a href=""class="ml-5">Themes</a>  <a href=""class="ml-5">Features</a>  <a href=""class="ml-5">Blog</a>  <a href=""class="ml-5">Stats</a></p>
+                            <p style="text-align:center">Copyright 2019</p>
+                        </div>
+                    </footer>
+                </div>
+        </div>
+
+        <div v-if="mySitesButton">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-login">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto" id="navbarNav">
+                        <li class="nav-item active">
+                            <a href="#" class="nav-link cont-nav" v-on:click="homepage">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="#" class="nav-link cont-nav">Reader</a>
+                        </li>
+                    </ul>
+                    <button type="button" class="btn btn-sm" id="write-btn" v-on:click="mySitesButton = false; writePost = true; text = ''; title = ''"><img src="https://img.icons8.com/wired/64/000000/add.png" height="25px"> Write</button>
+                    <button type="button" class="btn btn-primary btn-sm">Profile</button>
+                    <button type="button" class="btn btn-primary btn-sm" v-on:click="homePage = true; mySitesButton = false">Logout</button>
+                </div>
+            </nav>
+
+            <div id="mySites" class="d-flex">
+                    <div id="sideMenu" class="mr-3 px-4 py-3 border col-1.5">
+                            <a href="#" class="side-button"><img src="https://img.icons8.com/wired/64/000000/imac.png" height="25px" class="pb-1"> View Site</a><br>
+                            <a href="#" class="side-button"><img src="https://img.icons8.com/wired/64/000000/bar-chart.png" height="25px" class="pb-1"> Stats</a><br>
+                            <a href="#" class="side-button"><img src="https://img.icons8.com/wired/64/000000/activity-feed.png" height="25px" class="pb-1"> Activity</a><br>
+                            <a href="#" class="side-button"><img src="https://img.icons8.com/wired/64/000000/realtime-protection.png" height="25px" class="pb-1"> Plan</a><br>
+                            <br>
+                            <p id="sub-title">Manage</p>
+                            <a href="#" class="side-button">Site Pages</a><br>
+                            <a href="#" class="side-button" v-on:click="showAllArticles"><img src="https://img.icons8.com/wired/64/000000/note.png" height="25px" alt="" class="pb-1"> Blog Posts</a><br>
+                            <a href="#" class="side-button"><img src="https://img.icons8.com/wired/64/000000/play.png" height="25px" alt="" class="pb-1"> Media</a><br>
+                            <a href="#" class="side-button"><img src="https://img.icons8.com/wired/64/000000/comments.png" height="25px" alt="" class="pb-1"> Comments</a><br>
+                            <a href="#" class="side-button" v-on:click="searchBar = true; blogPost = false;"><img src="https://img.icons8.com/wired/64/000000/zoom-in.png" height="25px" alt="" class="pb-1"> Search</a><br>
+                            <a href="#" class="side-button"><img src="https://img.icons8.com/wired/64/000000/plugin.png" height="25px" class="pb-1"> Plugins</a><br>
+                            <a href="#" class="side-button">Import</a><br>
+                            <br>
+                            <p id="sub-title">Personalize</p>
+                            <a href="#" class="side-button">Customize</a><br>
+                            <br>
+                            <p id="sub-title">Configure</p>
+                            <a href="#" class="side-button">Sharing</a><br>
+                            <a href="#" class="side-button">People</a><br>
+                            <a href="#" class="side-button">Domains</a><br>
+                            <a href="#" class="side-button">Settings</a><br>
+                            <br>
+                            <p id="sub-title">Add New Site</a><br>
+                    </div>
+                    <div id="sideMenuDetails" class="col-9">
+                        <!-- search method -->
+                        <div v-if="!blogPost">
+                            <form class="form-inline container col-4 mt-3" v-if="searchBar">
+                                <input id="search-bar" class="form-control mr-sm-2" type="search" v-model="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="searchPost">Search</button>
+                            </form>
+
+                            <div class="row" v-if="allSearchResults">
+                                <div class="col-8 col-sm-3 mx-5 my-5" v-for="result in searchResults">
+                                    <div class="card mt-5">
+                                        <div class="card-body" >
+                                            <h5 class="card-title">{{ result.title }}</h5>
+                                            <p class="card-content"> {{ result.content }}</p>
+                                            <a href="#" class="btn btn-primary">See Full Post</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="blogPost">
+                            <div class="row">
+                                <div class="col-sm-3 d-flex justify-content-around" v-for="article in articles">
+                                    <div class="card mt-5">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ article.title }}</h5>
+                                            <p class="card-content" v-html="article.content"> </p>
+                                            <a href="#" class="btn btn-primary" v-on:click="seeArticle(article._id); blogPost = false; seeFullArticle = true; searchBar = false">See Full Post</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container my-5" v-if="seeFullArticle">
+                                <!-- see full article -->
+                                <div class="card text-center">
+                                    <!-- navbar  -->
+                                    <div class="card-header d-flex">
+                                        <div class="d-flex">
+                                                <div>
+                                                    <a class="nav-link active" href="#" v-on:click="seeArticle(fullArticle._id); doneEditingButton = false">Article</a>
+                                                </div>
+                                                <div>
+                                                    <a class="nav-link" href="#" v-on:click="populateData(fullArticle._id); doneEditingButton = true">Edit</a>
+                                                </div>
+                                                <div>
+                                                    <a class="nav-link" style="color:red;" href="#" v-on:click="deletePost">Delete</a>
+                                                </div>
+                                        </div>
+                                        <div class="d-flex justify-content-end vw-100" v-if="doneEditingButton">
+                                            <ul class="nav nav-tabs card-header-tabs">
+                                                <li><a class="nav-link" href="#" class="justify-content-end" v-on:click="updateData(fullArticle._id) ">Done Editing</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- full detail article -->
+                                    <div class="card-body" v-if="seeFullDetailArticle">
+                                        <h3 class="card-title">{{ fullArticle.title }}</h3>
+                                        <!-- <p>{{fullArticle.imgUrl}}</p> -->
+                                        <img v-bind:src="file" alt="" width="70%" class="my-4"/>
+                                        <p class="card-text" v-html="fullArticle.content"></p>
+                                    </div>
+                                    <!-- edit article -->
+                                    <div v-if="editArticle">
+                                        <div id="form-edit-article" class="col-11 container mx-3 my-3">
+                                            <form id="edit-post" method="post">
+                                                <input type="text" placeholder="Title" class="container" height="100px" style="font-size: 20pt;" v-model="title">
+                                            </form>
+                                            <div>
+                                                <wysiwyg v-model="text" />
+                                            </div>
+                                        </div>  
+                                    </div>
+                                </div>
+                        </div>
+                    </div>        
+                </div>
+        </div>
+
+        <div v-if="writePost">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-create-post">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto" id="navbarNav">
+                            <li class="nav-item active">
+                                <a href="#" class="nav-link cont-nav" v-on:click="mySitesButton = true; writePost = false">My Sites</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="#" class="nav-link cont-nav">User: Japra</a>
+                            </li>
+                        </ul>
+                        <button type="button" class="btn btn-sm" id="write-btn">Preview</button>
+                        <button form="#new-post" class="btn btn-primary btn-sm" value="Publish" v-on:click="addArticle">Publish</button>
+                    </div>
+                </nav>
+
+                <div id="create_post" class="container my-5 d-flex">
+                        <div id="form-article" class="col-10">
+                            <form id="new-post" method="post" v-on:submit.prevent="addArticle">
+                                <input type="text" placeholder="Title" class="container my-2" height="100px" style="font-size: 20pt;" v-model="title">
+                                <div>
+                                    <wysiwyg v-model="text" />
+                                </div>
+                                <div style="position:relative;" class="my-3">
+                                    <a class='btn btn-primary' href='javascript:;'>
+                                        Choose File
+                                        <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40" @change="getFile">
+                                        <img v-bind:src="file" alt="">
+                                    </a>
+                                    <span class='label label-info' id="upload-file-info"></span>
+                                </div>
+                            </form>
+                        </div>  
+                        <div>
+                            <p>Jualan</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/vueWysiwyg.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        new Vue({
+            el: '#home',
+            created() {
+
+            },
+            components: {
+                wysiwyg: vueWysiwyg.default.component
+            },
+            data: {
+                articles: [],
+                isLogin: false,
+                blogPost: false,
+                loginPageButton: false,
+                mySitesButton: false,
+                homePage: true,
+                writePost: false,
+                text: '',
+                title: '',
+                search: '',
+                searchResults: [],
+                seeFullArticle: false,
+                fullArticle: {},
+                searchBar: false,
+                seeFullDetailArticle: false,
+                editArticle: false,
+                doneEditingButton: false,
+                imgUrl: '',
+                allSearchResults: false,
+                file: ''
+            },
+            methods: {
+                homepage() {
+                    this.isLogin = false
+                    this.blogPost = false
+                    this.loginPageButton = false
+                    this.mySitesButton = false
+                    this.homePage = true
+                    this.writePost = false
+                    this.seeFullArticle = false
+                    this.searchBar = false
+                    this.seeFullDetailArticle = false
+                    this.editArticle = false
+                    this.doneEditingButton = false
+                    this.allSearchResults = false
+                },
+                addArticle() {
+                    let data = {
+                        title: this.title,
+                        content: this.text
+                    }
+                    let postReady = new FormData()
+                    postReady.append("image", this.file)
+                    postReady.append("data", JSON.stringify(data))
+
+                    axios.post('http://localhost:3000/articles', postReady)
+                    .then(newArticle => {
+                        console.log(newArticle)
+                    })
+                    .catch(err => {
+                        console.error(err)
+                    })
+                },
+                showAllArticles() {
+                    this.blogPost = true
+                    this.allSearchResults = false
+                    axios.get('http://localhost:3000/articles')
+                    .then(allArticles => {
+                        // console.log(allArticles.data.data)
+                        this.articles = allArticles.data.data
+                    }) 
+                    .catch(err => {
+                        console.error(err)
+                    })
+                },
+                searchPost() {
+                    this.allSearchResults = true
+                    axios.get(`http://localhost:3000/articles?search=${this.search}`)
+                    .then(search => {
+                        this.searchResults = search.data.data
+                        this.search = ''
+                    })
+                    .catch(err => {
+                        console.error(err)
+                    })
+                },
+                seeArticle(id) {
+                    this.editArticle = false
+                    this.seeFullDetailArticle = true
+                    return axios.get(`http://localhost:3000/articles/${id}`)
+                    .then(article => {
+                        console.log(article.data.data)
+                        this.fullArticle = article.data.data
+                        this.file = this.fullArticle.imgUrl
+                    })
+                    .catch(err => {
+                        console.error(err)
+                    })
+                },
+                populateData(id) {
+                    this.seeFullDetailArticle = false
+                    this.editArticle = true
+                    axios.get(`http://localhost:3000/articles/${id}`)
+                    .then(article => {
+                        this.title = article.data.data.title
+                        this.text = article.data.data.content
+                    })
+                    .catch(err => {
+                        console.error(err)
+                    })
+                },
+                getFile(e) {
+                    this.showPreview()
+                    this.file = e.target.files[0]
+                },
+                updateData(id) {
+                    axios.put(`http://localhost:3000/articles/${id}`, {
+                        title: this.title,
+                        content: this.text
+                    })
+                    .then(updated => {
+                        console.log(updated.data.data)
+                    })
+                    .catch(err => {
+                        console.error(err)
+                    })                    
+                },
+                deletePost() {
+                    swal({
+                            title: "Are you sure?",
+                            text: "Once deleted, you will not be able to recover this imaginary file!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                return axios.delete(`http://localhost:3000/articles/${this.fullArticle._id}`)
+                                .then(() => {
+                                    swal("Your post has been deleted!", {
+                                        icon: "success",
+                                    });
+                                    this.searchBar = true
+                                    this.seeFullArticle = false
+                                    this.blogPost = true
+                                })
+                            } 
+                        })
+                        .catch(err => {
+                            console.error(err)
+                        })
+                },
+                showPreview() {
+                    console.log('preview')
+                    let fileUploaded = new FormData()
+                    fileUploaded.append("image", this.file)
+
+                    axios.post('http://localhost:3000/articles/showPreview', fileUploaded)
+                    .then(preview => {
+                        console.log(preview)
+                    })
+                    .catch(err => {
+                        console.error(err)
+                    })                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>
