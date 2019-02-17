@@ -10,8 +10,16 @@ const articleSchema = new Schema({
         type: String,
         required: true
     },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     imgUrl: {
         type: String
+    },
+    tags: {
+        type: Array,
+        default: []     
     },
     created_at: {
         type: Date,

@@ -1,0 +1,246 @@
+
+                    <!-- <div id="sideMenuDetails" class="col-9"> -->
+                        <!-- search method -->
+                        <!-- <div v-if="!blogPost">
+                            <form class="form-inline container col-4 mt-3" v-if="searchBar">
+                                <input id="search-bar" class="form-control mr-sm-2" type="search" v-model="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" v-on:click="searchPost">Search</button>
+                            </form>
+
+                            <div class="row" v-if="allSearchResults">
+                                <div class="col-8 col-sm-3 mx-5 my-5" v-for="result in searchResults">
+                                    <div class="card mt-5">
+                                        <div class="card-body" >
+                                            <h5 class="card-title">{{ result.title }}</h5>
+                                            <p class="card-content"> {{ result.content }}</p>
+                                            <a href="#" class="btn btn-primary">See Full Post</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div v-if="blogPost">
+                            <div class="row">
+                                <div class="col-sm-3 d-flex justify-content-around" v-for="article in articles">
+                                    <div class="card mt-5">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ article.title }}</h5>
+                                            <p class="card-content" v-html="article.content"> </p>
+                                            <a href="#" class="btn btn-primary" v-on:click="seeArticle(article._id); blogPost = false; seeFullArticle = true; searchBar = false">See Full Post</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="container my-5" v-if="seeFullArticle">
+                                see full article
+                                <div class="card text-center">
+                                    navbar 
+                                    <div class="card-header d-flex">
+                                        <div class="d-flex">
+                                                <div>
+                                                    <a class="nav-link active" href="#" v-on:click="seeArticle(fullArticle._id); doneEditingButton = false">Article</a>
+                                                </div>
+                                                <div>
+                                                    <a class="nav-link" href="#" v-on:click="populateData(fullArticle._id); doneEditingButton = true">Edit</a>
+                                                </div>
+                                                <div>
+                                                    <a class="nav-link" style="color:red;" href="#" v-on:click="deletePost">Delete</a>
+                                                </div>
+                                        </div>
+                                        <div class="d-flex justify-content-end vw-100" v-if="doneEditingButton">
+                                            <ul class="nav nav-tabs card-header-tabs">
+                                                <li><a class="nav-link" href="#" class="justify-content-end" v-on:click="updateData(fullArticle._id) ">Done Editing</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    full detail article
+                                    <div class="card-body" v-if="seeFullDetailArticle">
+                                        <h3 class="card-title">{{ fullArticle.title }}</h3>
+                                        <p>{{fullArticle.imgUrl}}</p>
+                                        <img v-bind:src="file" alt="" width="70%" class="my-4"/>
+                                        <p class="card-text" v-html="fullArticle.content"></p>
+                                    </div>
+                                    edit article
+                                    <div v-if="editArticle">
+                                        <div id="form-edit-article" class="col-11 container mx-3 my-3">
+                                            <form id="edit-post" method="post">
+                                                <input type="text" placeholder="Title" class="container" height="100px" style="font-size: 20pt;" v-model="title">
+                                            </form>
+                                            <div>
+                                                <wysiwyg v-model="text" />
+                                            </div>
+                                        </div>  
+                                    </div>
+                                </div>
+                        </div> -->
+                    <!-- </div>   -->
+
+
+                    
+                    // new Vue({
+                        //     el: '#home',
+                        //     created() {
+                        
+                        //     },
+                        //     components: {
+                        //         wysiwyg: vueWysiwyg.default.component
+                        //     },
+                        //     data: {
+                        //         articles: [],
+                        //         isLogin: false,
+                        //         blogPost: false,
+                        //         loginPageButton: false,
+                        //         mySitesButton: false,
+                        //         homePage: true,
+                        //         writePost: false,
+                        //         text: '',
+                        //         title: '',
+                        //         search: '',
+                        //         searchResults: [],
+                        //         seeFullArticle: false,
+                        //         fullArticle: {},
+                        //         searchBar: false,
+                        //         seeFullDetailArticle: false,
+                        //         editArticle: false,
+                        //         doneEditingButton: false,
+                        //         imgUrl: '',
+                        //         allSearchResults: false,
+                        //         file: ''
+                        //     },
+                        //     methods: {
+                        //         homepage() {
+                        //             this.isLogin = false
+                        //             this.blogPost = false
+                        //             this.loginPageButton = false
+                        //             this.mySitesButton = false
+                        //             this.homePage = true
+                        //             this.writePost = false
+                        //             this.seeFullArticle = false
+                        //             this.searchBar = false
+                        //             this.seeFullDetailArticle = false
+                        //             this.editArticle = false
+                        //             this.doneEditingButton = false
+                        //             this.allSearchResults = false
+                        //         },
+                        //         addArticle() {
+                        //             let data = {
+                        //                 title: this.title,
+                        //                 content: this.text
+                        //             }
+                        //             let postReady = new FormData()
+                        //             postReady.append("image", this.file)
+                        //             postReady.append("data", JSON.stringify(data))
+                        
+                        //             axios.post('http://localhost:3000/articles', postReady)
+                        //             .then(newArticle => {
+                        //                 console.log(newArticle)
+                        //             })
+                        //             .catch(err => {
+                        //                 console.error(err)
+                        //             })
+                        //         },
+                        //         showAllArticles() {
+                        //             this.blogPost = true
+                        //             this.allSearchResults = false
+                        //             axios.get('http://localhost:3000/articles')
+                        //             .then(allArticles => {
+                        //                 // console.log(allArticles.data.data)
+                        //                 this.articles = allArticles.data.data
+                        //             }) 
+                        //             .catch(err => {
+                        //                 console.error(err)
+                        //             })
+                        //         },
+                        //         searchPost() {
+                        //             this.allSearchResults = true
+                        //             axios.get(`http://localhost:3000/articles?search=${this.search}`)
+                        //             .then(search => {
+                        //                 this.searchResults = search.data.data
+                        //                 this.search = ''
+                        //             })
+                        //             .catch(err => {
+                        //                 console.error(err)
+                        //             })
+                        //         },
+                        //         seeArticle(id) {
+                        //             this.editArticle = false
+                        //             this.seeFullDetailArticle = true
+                        //             return axios.get(`http://localhost:3000/articles/${id}`)
+                        //             .then(article => {
+                        //                 console.log(article.data.data)
+                        //                 this.fullArticle = article.data.data
+                        //                 this.file = this.fullArticle.imgUrl
+                        //             })
+                        //             .catch(err => {
+                        //                 console.error(err)
+                        //             })
+                        //         },
+                        //         populateData(id) {
+                        //             this.seeFullDetailArticle = false
+                        //             this.editArticle = true
+                        //             axios.get(`http://localhost:3000/articles/${id}`)
+                        //             .then(article => {
+                        //                 this.title = article.data.data.title
+                        //                 this.text = article.data.data.content
+                        //             })
+                        //             .catch(err => {
+                        //                 console.error(err)
+                        //             })
+                        //         },
+                        //         getFile(e) {
+                        //             this.showPreview()
+                        //             this.file = e.target.files[0]
+                        //         },
+                        //         updateData(id) {
+                        //             axios.put(`http://localhost:3000/articles/${id}`, {
+                        //                 title: this.title,
+                        //                 content: this.text
+                        //             })
+                        //             .then(updated => {
+                        //                 console.log(updated.data.data)
+                        //             })
+                        //             .catch(err => {
+                        //                 console.error(err)
+                        //             })                    
+                        //         },
+                        //         deletePost() {
+                        //             swal({
+                        //                     title: "Are you sure?",
+                        //                     text: "Once deleted, you will not be able to recover this imaginary file!",
+                        //                     icon: "warning",
+                        //                     buttons: true,
+                        //                     dangerMode: true,
+                        //                 })
+                        //                 .then((willDelete) => {
+                        //                     if (willDelete) {
+                        //                         return axios.delete(`http://localhost:3000/articles/${this.fullArticle._id}`)
+                        //                         .then(() => {
+                        //                             swal("Your post has been deleted!", {
+                        //                                 icon: "success",
+                        //                             });
+                        //                             this.searchBar = true
+                        //                             this.seeFullArticle = false
+                        //                             this.blogPost = true
+                        //                         })
+                        //                     } 
+                        //                 })
+                        //                 .catch(err => {
+                        //                     console.error(err)
+                        //                 })
+                        //         },
+                        //         showPreview() {
+                        //             console.log('preview')
+                        //             let fileUploaded = new FormData()
+                        //             fileUploaded.append("image", this.file)
+                        
+                        //             axios.post('http://localhost:3000/articles/showPreview', fileUploaded)
+                        //             .then(preview => {
+                        //                 console.log(preview)
+                        //             })
+                        //             .catch(err => {
+                        //                 console.error(err)
+                        //             })                    
+                        //         }
+                        //     }
+                        // })                    

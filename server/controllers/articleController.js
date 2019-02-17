@@ -1,4 +1,5 @@
 const Article = require('../models/article')
+const Tag = require('../models/tag')
 
 class Controller {
     static allArticles(req, res) {
@@ -6,7 +7,9 @@ class Controller {
         if (req.query.search) {
             search = { title: new RegExp(`.*${req.query.search}.*`, `i`) }
         }
-        Article.find(search)
+        Article.find(search).sort([
+            ['created_at', 'descending']
+        ]).populate('author')
         .then(articles => {
             res
                 .status(200)
@@ -26,13 +29,20 @@ class Controller {
     }
 
     static addArticle(req, res) {
-        // console.log(req.file)
+        let tag = []
+        let id = req.decoded.id
         let data = JSON.parse(req.body.data)
-        Article.create({
+        tag = data.tag.split(' ')
+        let addArticle = {
             title: data.title,
             content: data.content,
-            imgUrl: req.file.cloudStoragePublicUrl
-        })
+            tags: tag,
+            author: id
+        }
+        if (req.file) {
+            addArticle.imgUrl = req.file.cloudStoragePublicUrl
+        }
+        Article.create(addArticle)
         .then(newArticle => {
             res
                 .status(201)
@@ -52,7 +62,7 @@ class Controller {
     }
 
     static getArticle(req, res) {
-        Article.findById(req.params.id)
+        Article.findById(req.params.id).populate('author')
         .then(article => {
             res
                 .status(201)
@@ -100,6 +110,7 @@ class Controller {
                 })
         })
         .catch(err => {
+            console.log(err)
             res
                 .status(500)
                 .json({
@@ -109,19 +120,69 @@ class Controller {
         })
     }
 
-    static getPreview(req, res) {
-        console.log(req.file)
-        // try {
-            
-        // } catch (err) {
-        //     res
-        //         .status(500)
-        //         .json({
-        //             msg: `Internal server error`,
-        //             err: err
-        //         })  
-        // }
+    static getMyArticles(req, res) {
+        Article.find({
+            author: req.decoded.id
+        }).sort([
+            ['created_at', 'descending']
+        ])
+        .then(articles => {
+            res
+                .status(200)
+                .json(articles)
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .json({
+                    msg: `Internal server error`,
+                    err: err
+                }) 
+        })
     }
+
+    static findTag(req, res) {
+        let regex = new RegExp(req.query.search, 'i')
+
+        Article.find({
+                tags: { 
+                    $in: [regex]
+                }
+        //   $or: [
+        //     { 
+        //         title: { 
+        //             $in: [regex]
+        //         }
+        //     }, {
+        //         content: { 
+        //             $in: [regex]
+        //         }
+        //     }, { 
+        //         description: { 
+        //             $in: [regex]
+        //         }
+        //     }, { 
+        //         tags: { 
+        //             $in: [regex]
+        //         }
+        //     },
+        //   ]
+        })
+        .then(data=> {
+            console.log(data)
+            res
+                .status(200)
+                .json(data)
+        })
+        .catch(err => {
+            res
+                .status(500)
+                .json({
+                    msg: `Internal server error`,
+                    err: err
+                })
+        })
+      }
 }
 
 module.exports = Controller

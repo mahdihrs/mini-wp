@@ -1,9 +1,9 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT
 const cors = require('cors')
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 const indexRouter = require('./routes/index')
 const axios = require('axios')
 
